@@ -10,3 +10,8 @@ class RegisterRequest(BaseRequestResponse):
 
     display_name: str | None
     picture: HttpUrl | None
+
+
+class LoginRequest(BaseRequestResponse):
+    email: EmailStr
+    password: str

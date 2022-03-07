@@ -28,17 +28,14 @@ class Context:
 
     async def __aenter__(self):
         self.mongo_client = motor.motor_asyncio.AsyncIOMotorClient(self.mongo_url)
-        await init_beanie(database=self.mongo_client.db_name, document_models=[User])
+        db_name = f'tradebro-{self.env}'
+        await init_beanie(database=self.mongo_client[db_name], document_models=[User])
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         if exc_type or exc_val or exc_tb:
             ''' Exception happened '''
             logger.error(msg=exc_tb)
             return
-
-    @staticmethod
-    async def tokenless():
-        return Context()
 
 
 context = Context()

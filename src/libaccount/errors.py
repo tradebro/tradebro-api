@@ -17,3 +17,9 @@ class ForbiddenError(TradebroGeneralError):
     def __init__(self, msg: str):
         self.code = 403
         self.message = msg
+
+
+class UnauthorizedError(TradebroGeneralError):
+    def __init__(self):
+        self.code = 401
+        self.message = f'The email and password combination is not recognized'
