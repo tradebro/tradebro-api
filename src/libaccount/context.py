@@ -4,8 +4,8 @@ from os import environ
 import motor.motor_asyncio
 from beanie import init_beanie
 
-from tradebro.libaccount.models.mongo import User
-from tradebro.libshared.logging import logger
+from libaccount.models.mongo import User
+from libshared.logging import logger
 
 
 @dataclass

@@ -1,6 +1,6 @@
 from pydantic import EmailStr, HttpUrl
 
-from tradebro.libshared.models.baserequestresponse import BaseRequestResponse
+from libshared.models.baserequestresponse import BaseRequestResponse
 
 
 class RegisterRequest(BaseRequestResponse):

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from tradebro.libaccount.models.mongo import User
-from tradebro.libshared.models.baserequestresponse import BaseRequestResponse
+from libaccount.models.mongo import User
+from libshared.models.baserequestresponse import BaseRequestResponse
 
 from pydantic import HttpUrl, EmailStr
 

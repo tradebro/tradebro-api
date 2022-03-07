@@ -1,9 +1,9 @@
 from fastapi import APIRouter
 
-from tradebro.libaccount.domains.me import Me
-from tradebro.libaccount.models.requestresponse.request import RegisterRequest
-from tradebro.libaccount.models.requestresponse.response import RegisterResponse
-from tradebro.libaccount.context import Context
+from libaccount.domains.me import Me
+from libaccount.models.requestresponse.request import RegisterRequest
+from libaccount.models.requestresponse.response import RegisterResponse
+from libaccount.context import Context
 
 router = APIRouter()
 

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from tradebro.libshared.models.mongo import BaseDatetimeMeta
+from libshared.models.mongo import BaseDatetimeMeta
 
 
 def test_created_at_is_now_ish():

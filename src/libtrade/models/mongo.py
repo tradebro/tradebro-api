@@ -4,7 +4,7 @@ from decimal import Decimal
 from beanie import Document, PydanticObjectId
 from pydantic import HttpUrl
 
-from tradebro.libshared.models.mongo import BaseDatetimeMeta
+from src.libshared.models.mongo import BaseDatetimeMeta
 
 
 class Trade(Document, BaseDatetimeMeta):

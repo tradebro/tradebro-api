@@ -1,6 +1,6 @@
 import pytest
 
-from tradebro.libshared.utils import generate_new_token
+from libshared.utils import generate_new_token
 
 
 def test_generate_new_token_with_default_param_string_len_is_134():

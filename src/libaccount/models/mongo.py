@@ -4,8 +4,8 @@ from beanie import Document
 from pydantic import HttpUrl, EmailStr, Field
 from passlib.context import CryptContext
 
-from tradebro.libshared.models.mongo import BaseDatetimeMeta
-from tradebro.libshared.utils import generate_new_token
+from libshared.models.mongo import BaseDatetimeMeta
+from libshared.utils import generate_new_token
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

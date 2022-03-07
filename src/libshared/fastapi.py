@@ -4,7 +4,7 @@ from typing import Dict, Callable
 from slugify import slugify
 from starlette.responses import JSONResponse
 
-from tradebro.libshared.logging import logger
+from libshared.logging import logger
 
 
 def get_basic_app_params(

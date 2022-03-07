@@ -4,15 +4,15 @@ from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError, HTTPException
 from fastapi.requests import Request
 
-from tradebro.appaccount.views import router
-from tradebro.libshared.fastapi import (
+from appaccount.views import router
+from libshared.fastapi import (
     get_basic_app_params,
     generate_exception_handler,
     request_validation_error_formatter,
     integrity_error_formatter,
     assertion_formatter,
 )
-from tradebro.libaccount.context import context
+from libaccount.context import context
 
 
 logger = logging.getLogger(__name__)

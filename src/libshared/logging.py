@@ -27,7 +27,7 @@ class MaxLevelFilter(logging.Filter):
 
 
 logging.root.setLevel(logging.INFO)
-logger = logging.getLogger('tradebro-api')
+logger = logging.getLogger('src-api')
 logger.propagate = False
 
 # handlers, filter, format

@@ -1,8 +1,8 @@
-from tradebro.libaccount.constants import TokenPurposes
-from tradebro.libaccount.errors import UserNotFoundError, ForbiddenError
-from tradebro.libaccount.models.mongo import User, Token
-from tradebro.libaccount.models.requestresponse.request import RegisterRequest
-from tradebro.libaccount.models.requestresponse.response import RegisterResponse
+from libaccount.constants import TokenPurposes
+from libaccount.errors import UserNotFoundError, ForbiddenError
+from libaccount.models.mongo import User, Token
+from libaccount.models.requestresponse.request import RegisterRequest
+from libaccount.models.requestresponse.response import RegisterResponse
 
 
 class Me:
