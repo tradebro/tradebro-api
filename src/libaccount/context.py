@@ -20,7 +20,7 @@ class Context:
 
     def __init__(self):
         self.mongo_url = environ.get('MONGO_URL')
-        self.env = environ.get('env')
+        self.env = environ.get('ENV')
 
         self.is_production = self.env == 'prod'
         self.is_staging = self.env == 'staging'

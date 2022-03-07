@@ -22,6 +22,7 @@ app_params = get_basic_app_params(
     environment=context.env,
     service_description='Account services to forward headers to other services',
     service_version='0.1.0',
+    allow_swagger=True,
 )
 app = FastAPI(**app_params)
 

@@ -12,6 +12,8 @@ python-json-logger = "^2.0.2"
 slugify = "^0.0.1"
 pyhumps = "^3.5.3"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+uvicorn = "^0.17.5"
+pydantic = {extras = ["email"], version = "^1.9.0"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0.1"
