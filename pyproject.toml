@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "tradebro-api"
+version = "0.1.0"
+description = ""
+authors = ["Batista Harahap <batista@bango29.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.74.1"
+beanie = "^1.10.0"
+python-json-logger = "^2.0.2"
+slugify = "^0.0.1"
+pyhumps = "^3.5.3"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0.1"
+pytest-raises = "^0.11"
+pytest-cov = "^3.0.0"
+pytest-mongodb = "^2.2.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
