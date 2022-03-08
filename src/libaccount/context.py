@@ -5,11 +5,9 @@ from os import environ
 
 import motor.motor_asyncio
 from beanie import init_beanie
-from fastapi import Request
 
 from libaccount.errors import UnauthorizedError
 from libaccount.models.mongo import User
-from libshared.logging import logger
 
 
 @dataclass
