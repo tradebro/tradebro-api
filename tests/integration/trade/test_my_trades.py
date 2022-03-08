@@ -9,9 +9,9 @@ from tests.integration.trade.test_new_trade import NEW_TRADE_PAYLOAD
 
 def test_get_my_trades_without_since_id(app_account: TestClient, app_trade: TestClient):
     """
-    GIVEN a user is posting a new trade
+    GIVEN a user wants to get their trades without a since_id
     WHEN the endpoint is called
-    THEN it should record the trade in the database
+    THEN it should return the records
     """
     register_payload = REGISTER_PAYLOAD.copy()
     register_payload.update({
@@ -45,9 +45,9 @@ def test_get_my_trades_without_since_id(app_account: TestClient, app_trade: Test
 
 def test_get_my_trades_with_since_id(app_account: TestClient, app_trade: TestClient):
     """
-    GIVEN a user is posting a new trade
+    GIVEN a user wants to get their trades with a since_id
     WHEN the endpoint is called
-    THEN it should record the trade in the database
+    THEN it should return the records
     """
     register_payload = REGISTER_PAYLOAD.copy()
     register_payload.update({
