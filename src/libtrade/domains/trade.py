@@ -23,12 +23,7 @@ class Trader:
         cls, *, ctx: Context, since_id: str | None = None, size: int | None = 10
     ) -> List[TradeResponse]:
         if not since_id:
-            trades = (
-                await Trade.find(Trade.user_id == ctx.current_user.id)
-                .sort('-id')
-                .limit(size)
-                .to_list()
-            )
+            trades = await Trade.find(Trade.user_id == ctx.current_user.id).sort('-id').limit(size).to_list()
         else:
             trades = (
                 await Trade.find(Trade.user_id == ctx.current_user.id, Trade.id <= PydanticObjectId(since_id))
