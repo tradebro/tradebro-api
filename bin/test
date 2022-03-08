@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-pytest --cov=src --cov-fail-under=85 -vv -c pytest.ini --cov-report html tests/
+pytest --cov=src --cov-fail-under=90 -vv -c pytest.ini --cov-report html tests/

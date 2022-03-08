@@ -42,4 +42,8 @@ def test_create_new_trade_success(app_account: TestClient, app_trade: TestClient
     }
     response = app_trade.post('/trades', json=NEW_TRADE_PAYLOAD, headers=headers)
 
+    resp_body = response.json()
+    modeled = TradeResponse(**resp_body)
+
     assert response.status_code == 200
+    assert modeled

@@ -38,6 +38,6 @@ jobs:
       env:
         PATH: "/opt/venv/bin:$PATH"
     - name: Run tests
-      run: python -m pytest --cov=src --cov-fail-under=85 -vv -c pytest-ci.ini tests/
+      run: python -m pytest --cov=src --cov-fail-under=90 -vv -c pytest-ci.ini tests/
       env:
         PATH: "/opt/venv/bin:$PATH"
