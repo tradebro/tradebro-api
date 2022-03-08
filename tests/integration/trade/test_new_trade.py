@@ -51,3 +51,14 @@ def test_create_new_trade_success(app_account: TestClient, app_trade: TestClient
 
     assert response.status_code == 200
     assert modeled
+
+
+def test_create_new_trade_without_token(app_trade: TestClient):
+    """
+    GIVEN a user is posting a new trade
+    WHEN the endpoint is called without a bearer token
+    THEN it should respond with a 401 status code
+    """
+    response = app_trade.post('/trades', json=NEW_TRADE_PAYLOAD)
+
+    assert response.status_code == 401

@@ -1,4 +1,5 @@
 import logging
+from uuid import uuid4
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
@@ -9,6 +10,7 @@ from appaccount.views import router
 from libshared.context import context
 from libshared.errors import TradebroGeneralError
 from libshared.fastapi import get_basic_app_params, generate_exception_handler
+from libshared.logging import set_request_id
 
 logger = logging.getLogger(__name__)
 
@@ -40,6 +42,10 @@ def before_request(request: Request, call_next):
     if request.url.path != '/public/hc':
         request.state.user_code = request.headers.get('x-forwarded-user')
         request.state.host = request.headers.get('host')
+
+    # Unique Request ID
+    set_request_id(new_request_id=uuid4())
+
     return call_next(request)
 
 
