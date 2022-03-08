@@ -428,25 +428,17 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.
 
 [[package]]
 name = "pytest-async-mongodb"
-version = "0.0.1.dev22"
+version = "0.0.1.dev3"
 description = "pytest plugin for async MongoDB"
 category = "dev"
 optional = false
 python-versions = "*"
-develop = false
 
 [package.dependencies]
-mongomock = ">=3.22.1"
-pymongo = ">=3.10"
-pytest = ">=5.4"
-pytest-asyncio = ">=0.11.0"
-pyyaml = ">=5.1"
-
-[package.source]
-type = "git"
-url = "https://github.com/gonzaloverussa/pytest-async-mongodb.git"
-reference = "master"
-resolved_reference = "82f4c14062a41791016cb731f733c032599e739d"
+mongomock = "*"
+pytest = ">=2.5.2"
+pytest-asyncio = "*"
+pyyaml = "*"
 
 [[package]]
 name = "pytest-asyncio"
@@ -650,7 +642,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "3c9970b51046bba56604843e88680c11d4374c41cded406bb4ce9b3697ed8cb9"
+content-hash = "7b38af4f53df6b223c678babebe0dc9eb087d47b24b2402f50707c2b647339f2"
 
 [metadata.files]
 anyio = [
@@ -1104,7 +1096,9 @@ pytest = [
     {file = "pytest-7.0.1-py3-none-any.whl", hash = "sha256:9ce3ff477af913ecf6321fe337b93a2c0dcf2a0a1439c43f5452112c1e4280db"},
     {file = "pytest-7.0.1.tar.gz", hash = "sha256:e30905a0c131d3d94b89624a1cc5afec3e0ba2fbdb151867d8e0ebd49850f171"},
 ]
-pytest-async-mongodb = []
+pytest-async-mongodb = [
+    {file = "pytest_async_mongodb-0.0.1.dev3-py2.py3-none-any.whl", hash = "sha256:c925d75620d4cf190f9c9efe75ed4f9b83a1ed536bebfaab9ded2e5f9123cfdf"},
+]
 pytest-asyncio = [
     {file = "pytest-asyncio-0.18.2.tar.gz", hash = "sha256:fc8e4190f33fee7797cc7f1829f46a82c213f088af5d1bb5d4e454fe87e6cdc2"},
     {file = "pytest_asyncio-0.18.2-py3-none-any.whl", hash = "sha256:20db0bdd3d7581b2e11f5858a5d9541f2db9cd8c5853786f94ad273d466c8c6d"},
