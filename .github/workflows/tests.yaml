@@ -29,7 +29,15 @@ jobs:
         mongodb-username: supercharge
         mongodb-password: secret
         mongodb-db: supercharge
-    - name: Install Poetry
-      run: python -m pip install poetry
-    - name: Install Deps and Run Tests
-      run: python setup.py develop && python -m poetry install && python -m pytest --cov=src --cov-fail-under=85 -vv -c pytest-ci.ini tests/
+    - name: Install Virtualenv and Poetry
+      run: python -m pip install virtualenv poetry && python -m virtualenv /opt/venv
+    - name: Disable Poetry Virtualenv
+      run: python -m poetry config virtualenvs.create false
+    - name: Install Deps
+      run: python setup.py develop && python -m poetry install
+      env:
+        PATH: "/opt/venv/bin:$PATH"
+    - name: Run tests
+      run: python -m pytest --cov=src --cov-fail-under=85 -vv -c pytest-ci.ini tests/
+      env:
+        PATH: "/opt/venv/bin:$PATH"
