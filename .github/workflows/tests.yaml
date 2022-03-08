@@ -34,4 +34,4 @@ jobs:
     - name: Install Deps
       run: python setup.py develop && python -m poetry install
     - name: Run tests
-      run: bin/ci-test
+      run: pytest --cov=src --cov-fail-under=85 -vv -c pytest-ci.ini tests/

@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-pytest --cov=src --cov-fail-under=85 -vv -c pytest-ci.ini tests/
