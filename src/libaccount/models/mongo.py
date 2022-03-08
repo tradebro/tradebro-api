@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import List
 
 from beanie import Document
@@ -32,6 +34,10 @@ class User(Document, BaseDatetimeMeta):
     @staticmethod
     def verify_password(plain_password: str, hashed_password: str) -> bool:
         return pwd_context.verify(plain_password, hashed_password)
+
+    @staticmethod
+    async def get_user_by_access_token(access_token: str) -> User:
+        return await User.find_one(User.tokens.token == access_token)
 
     class Collection:
         name = "users"

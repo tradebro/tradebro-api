@@ -15,3 +15,12 @@ class RegisterRequest(BaseRequestResponse):
 class LoginRequest(BaseRequestResponse):
     email: EmailStr
     password: str
+
+
+class UpdateProfileRequest(BaseRequestResponse):
+    password: str | None
+    password1: str | None
+    password2: str | None
+
+    display_name: str | None
+    picture: HttpUrl | None

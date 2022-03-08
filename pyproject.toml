@@ -19,9 +19,9 @@ pydantic = {extras = ["email"], version = "^1.9.0"}
 pytest = "^7.0.1"
 pytest-raises = "^0.11"
 pytest-cov = "^3.0.0"
-pytest-mongodb = "^2.2.0"
 requests = "^2.27.1"
 pytest-env = "^0.6.2"
+pytest-async-mongodb = {git = "https://github.com/gonzaloverussa/pytest-async-mongodb.git"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

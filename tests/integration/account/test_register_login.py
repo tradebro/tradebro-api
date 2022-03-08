@@ -3,7 +3,6 @@ from fastapi.testclient import TestClient
 from libaccount.models.requestresponse.response import RegisterLoginResponse
 from libshared.utils import generate_new_token
 
-
 register_email = f'{generate_new_token(size_in_bytes=10)}@tradebro.com'
 register_password = generate_new_token(size_in_bytes=30)
 REGISTER_PAYLOAD = {

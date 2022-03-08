@@ -1,7 +1,6 @@
 import pytest
 
 from libshared.utils import generate_new_token
-from libshared.fastapi import get_basic_app_params
 
 
 def test_generate_new_token_with_default_param_string_len_is_134():

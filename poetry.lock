@@ -378,6 +378,42 @@ tomli = ">=1.0.0"
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-async-mongodb"
+version = "0.0.1.dev22"
+description = "pytest plugin for async MongoDB"
+category = "dev"
+optional = false
+python-versions = "*"
+develop = false
+
+[package.dependencies]
+mongomock = ">=3.22.1"
+pymongo = ">=3.10"
+pytest = ">=5.4"
+pytest-asyncio = ">=0.11.0"
+pyyaml = ">=5.1"
+
+[package.source]
+type = "git"
+url = "https://github.com/gonzaloverussa/pytest-async-mongodb.git"
+reference = "master"
+resolved_reference = "82f4c14062a41791016cb731f733c032599e739d"
+
+[[package]]
+name = "pytest-asyncio"
+version = "0.18.2"
+description = "Pytest support for asyncio"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+pytest = ">=6.1.0"
+
+[package.extras]
+testing = ["coverage (==6.2)", "hypothesis (>=5.7.1)", "flaky (>=3.5.0)", "mypy (==0.931)"]
+
+[[package]]
 name = "pytest-cov"
 version = "3.0.0"
 description = "Pytest plugin for measuring coverage."
@@ -402,20 +438,6 @@ python-versions = "*"
 
 [package.dependencies]
 pytest = ">=2.6.0"
-
-[[package]]
-name = "pytest-mongodb"
-version = "2.2.0"
-description = "pytest plugin for MongoDB fixtures"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-mongomock = "*"
-pymongo = "*"
-pytest = ">=2.5.2"
-pyyaml = ">=5.1"
 
 [[package]]
 name = "pytest-raises"
@@ -579,7 +601,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a19acf531c54e7ccfe3a604e02ba0f25fa8e0740a6add5837e778e6a406698e6"
+content-hash = "d076207fd7a9764ccabff9e970226384309a479a17f3a2b7306d76c0b1c4f11d"
 
 [metadata.files]
 anyio = [
@@ -996,15 +1018,17 @@ pytest = [
     {file = "pytest-7.0.1-py3-none-any.whl", hash = "sha256:9ce3ff477af913ecf6321fe337b93a2c0dcf2a0a1439c43f5452112c1e4280db"},
     {file = "pytest-7.0.1.tar.gz", hash = "sha256:e30905a0c131d3d94b89624a1cc5afec3e0ba2fbdb151867d8e0ebd49850f171"},
 ]
+pytest-async-mongodb = []
+pytest-asyncio = [
+    {file = "pytest-asyncio-0.18.2.tar.gz", hash = "sha256:fc8e4190f33fee7797cc7f1829f46a82c213f088af5d1bb5d4e454fe87e6cdc2"},
+    {file = "pytest_asyncio-0.18.2-py3-none-any.whl", hash = "sha256:20db0bdd3d7581b2e11f5858a5d9541f2db9cd8c5853786f94ad273d466c8c6d"},
+]
 pytest-cov = [
     {file = "pytest-cov-3.0.0.tar.gz", hash = "sha256:e7f0f5b1617d2210a2cabc266dfe2f4c75a8d32fb89eafb7ad9d06f6d076d470"},
     {file = "pytest_cov-3.0.0-py3-none-any.whl", hash = "sha256:578d5d15ac4a25e5f961c938b85a05b09fdaae9deef3bb6de9a6e766622ca7a6"},
 ]
 pytest-env = [
     {file = "pytest-env-0.6.2.tar.gz", hash = "sha256:7e94956aef7f2764f3c147d216ce066bf6c42948bb9e293169b1b1c880a580c2"},
-]
-pytest-mongodb = [
-    {file = "pytest_mongodb-2.2.0-py2.py3-none-any.whl", hash = "sha256:60c25a78ed0e8f76da91598ae191c491bc2ba419bd649015b53ab3d7b6236945"},
 ]
 pytest-raises = [
     {file = "pytest-raises-0.11.tar.gz", hash = "sha256:f64a4dbcb5f89c100670fe83d87a5cd9d956586db461c5c628f7eb94b749c90b"},

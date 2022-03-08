@@ -1,7 +1,8 @@
 from libaccount.constants import TokenPurposes
+from libaccount.context import Context
 from libaccount.errors import UserNotFoundError, ForbiddenError, UnauthorizedError
 from libaccount.models.mongo import User, Token
-from libaccount.models.requestresponse.request import RegisterRequest, LoginRequest
+from libaccount.models.requestresponse.request import RegisterRequest, LoginRequest, UpdateProfileRequest
 from libaccount.models.requestresponse.response import RegisterLoginResponse
 
 
@@ -43,3 +44,28 @@ class Me:
             raise UnauthorizedError()
 
         return RegisterLoginResponse.from_user(user=user)
+
+    @classmethod
+    async def update_profile(cls, payload: UpdateProfileRequest, ctx: Context) -> RegisterLoginResponse:
+        has_changes = False
+
+        # Update display name
+        if payload.display_name:
+            ctx.current_user.display_name = payload.display_name
+            has_changes = True
+
+        # Update picture
+        if payload.picture:
+            ctx.current_user.picture = payload.picture
+            has_changes = True
+
+        # Update password
+        if payload.password and payload.password1 and payload.password2:
+            if payload.password1 == payload.password2:
+                ctx.current_user.password = User.password_hasher(password=payload.password1)
+                has_changes = True
+
+        if has_changes:
+            await ctx.current_user.save()
+
+        return RegisterLoginResponse.from_user(user=ctx.current_user)
