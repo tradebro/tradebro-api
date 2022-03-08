@@ -7,13 +7,17 @@ from tests.integration.account.test_register_login import REGISTER_PAYLOAD
 
 
 NEW_TRADE_PAYLOAD = {
-    'exchange': 'binance-coin-m',
+    'exchange': 'binance-usdt-m',
+    'pair': 'BNBUSDT',
     'trade_snapshot': 'https://www.tradingview.com/x/tbVzMBIc/',
     'reason_for_entry': 'Double bottom shown on the chart',
     'reason_for_exit': 'EMA528 as the target is reached',
     'direction': 'long',
     'entry_price': '367.21',
     'exit_price': '388.18',
+    'leverage': 10,
+    'pnl_in_percent': '57.1',
+    'pnl_in_currency': '13029.22',
     'entry_at': '2022-03-07T19:03:03Z',
     'exit_at': '2022-03-08T11:03:03Z',
 }
