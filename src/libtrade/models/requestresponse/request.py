@@ -1,12 +1,14 @@
 from datetime import datetime
 from decimal import Decimal
 
+from beanie import PydanticObjectId
 from pydantic import HttpUrl
 
 from libshared.models.baserequestresponse import BaseRequestResponse
 
 
 class TradeRequest(BaseRequestResponse):
+    id: PydanticObjectId | None = None
     exchange: str
     pair: str
 
