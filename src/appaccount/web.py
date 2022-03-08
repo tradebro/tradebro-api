@@ -8,10 +8,7 @@ from starlette.responses import JSONResponse
 from appaccount.views import router
 from libaccount.context import context
 from libaccount.errors import TradebroGeneralError
-from libshared.fastapi import (
-    get_basic_app_params,
-    generate_exception_handler,
-)
+from libshared.fastapi import get_basic_app_params, generate_exception_handler
 
 logger = logging.getLogger(__name__)
 
@@ -24,9 +21,7 @@ app_params = get_basic_app_params(
 )
 app = FastAPI(**app_params)
 
-errhandler_500 = generate_exception_handler(
-    500, client_error_message="Sorry, something wrong on our side"
-)
+errhandler_500 = generate_exception_handler(500, client_error_message="Sorry, something wrong on our side")
 
 
 def payment_general_exception_handler(request: Request, exc: TradebroGeneralError):

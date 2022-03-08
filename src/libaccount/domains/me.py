@@ -19,7 +19,7 @@ class Me:
             password=User.password_hasher(password=payload.password1),
             display_name=payload.display_name,
             picture=payload.picture,
-            tokens=[token]
+            tokens=[token],
         )
         await user.save()
 

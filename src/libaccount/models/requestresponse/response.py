@@ -17,8 +17,5 @@ class RegisterLoginResponse(BaseRequestResponse):
     @classmethod
     def from_user(cls, user: User) -> RegisterLoginResponse:
         return RegisterLoginResponse(
-            email=user.email,
-            display_name=user.display_name,
-            picture=user.picture,
-            access_token=user.tokens[0].token,
+            email=user.email, display_name=user.display_name, picture=user.picture, access_token=user.tokens[0].token
         )

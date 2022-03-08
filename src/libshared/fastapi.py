@@ -32,11 +32,7 @@ def get_basic_app_params(
     return app_params
 
 
-def generate_exception_handler(
-    status_code: int,
-    *,
-    client_error_message: str | Callable[[Exception], str] = '',
-):
+def generate_exception_handler(status_code: int, *, client_error_message: str | Callable[[Exception], str] = ''):
     def handler(request, exception):
         content = {'error': client_error_message(exception) if callable(client_error_message) else client_error_message}
         logger.error(traceback.format_exception(type(exception), exception, exception.__traceback__))

@@ -56,7 +56,7 @@ class Context:
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         if exc_type or exc_val or exc_tb:
-            ''' Exception happened '''
+            '''Exception happened'''
             return
 
     @classmethod
