@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-pytest --cov=src --cov-fail-under=90 tests/
+export MONGO_URL=mongodb://10.7.7.27:27017
+pytest --cov=src --cov-fail-under=85 -vv -c pytest.ini --cov-report html tests/

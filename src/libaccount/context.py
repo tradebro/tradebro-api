@@ -17,6 +17,7 @@ class Context:
     is_production: bool = False
     is_staging: bool = False
     is_dev: bool = True
+    is_testing: bool = False
 
     def __init__(self):
         self.mongo_url = environ.get('MONGO_URL')
@@ -25,6 +26,7 @@ class Context:
         self.is_production = self.env == 'prod'
         self.is_staging = self.env == 'staging'
         self.is_dev = self.env == 'dev'
+        self.is_testing = environ.get('TESTING') == 'pytest'
 
     async def __aenter__(self):
         self.mongo_client = motor.motor_asyncio.AsyncIOMotorClient(self.mongo_url)
