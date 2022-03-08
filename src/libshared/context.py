@@ -6,8 +6,9 @@ from os import environ
 import motor.motor_asyncio
 from beanie import init_beanie
 
-from libaccount.errors import UnauthorizedError
+from libshared.errors import UnauthorizedError
 from libaccount.models.mongo import User
+from libtrade.models.mongo import Trade
 
 
 @dataclass
@@ -39,7 +40,7 @@ class Context:
     async def __aenter__(self) -> Context:
         self.mongo_client = motor.motor_asyncio.AsyncIOMotorClient(self.mongo_url)
         db_name = f'tradebro-{self.env}'
-        await init_beanie(database=self.mongo_client[db_name], document_models=[User])
+        await init_beanie(database=self.mongo_client[db_name], document_models=[User, Trade])
 
         # Authorize
         if self.access_token:

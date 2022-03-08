@@ -3,7 +3,7 @@ from fastapi import APIRouter, Header
 from libaccount.domains.me import Me
 from libaccount.models.requestresponse.request import RegisterRequest, LoginRequest, UpdateProfileRequest
 from libaccount.models.requestresponse.response import RegisterLoginResponse
-from libaccount.context import Context
+from libshared.context import Context
 
 router = APIRouter()
 
@@ -15,7 +15,7 @@ async def register_user(payload: RegisterRequest):
 
 
 @router.post('/me/login', summary='Login a user', tags=['me', 'login'], response_model=RegisterLoginResponse)
-async def register_user(payload: LoginRequest):
+async def login_user(payload: LoginRequest):
     async with Context.tokenless():
         return await Me.login(payload=payload)
 

@@ -1,6 +1,6 @@
 from libaccount.constants import TokenPurposes
-from libaccount.context import Context
-from libaccount.errors import UserNotFoundError, ForbiddenError, UnauthorizedError
+from libshared.context import Context
+from libshared.errors import UserNotFoundError, ForbiddenError, UnauthorizedError
 from libaccount.models.mongo import User, Token
 from libaccount.models.requestresponse.request import RegisterRequest, LoginRequest, UpdateProfileRequest
 from libaccount.models.requestresponse.response import RegisterLoginResponse
