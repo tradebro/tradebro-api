@@ -23,7 +23,7 @@ NEW_TRADE_PAYLOAD = {
 }
 
 
-def test_create_new_trade_success(app_account: TestClient, app_trade: TestClient):
+def test_create_new_trade_success(app_client: TestClient):
     """
     GIVEN a user is posting a new trade
     WHEN the endpoint is called
@@ -33,7 +33,7 @@ def test_create_new_trade_success(app_account: TestClient, app_trade: TestClient
     register_payload.update({
         'email': f'{generate_new_token(size_in_bytes=10)}@tradebro.com'
     })
-    response = app_account.post('/me/register', json=register_payload)
+    response = app_client.post('/me/register', json=register_payload)
 
     resp_body = response.json()
     modeled = RegisterLoginResponse(**resp_body)
@@ -44,7 +44,7 @@ def test_create_new_trade_success(app_account: TestClient, app_trade: TestClient
     headers = {
         'authorization': f'Bearer {modeled.access_token}'
     }
-    response = app_trade.post('/trades', json=NEW_TRADE_PAYLOAD, headers=headers)
+    response = app_client.post('/trades', json=NEW_TRADE_PAYLOAD, headers=headers)
 
     resp_body = response.json()
     modeled = TradeResponse(**resp_body)
@@ -53,12 +53,12 @@ def test_create_new_trade_success(app_account: TestClient, app_trade: TestClient
     assert modeled
 
 
-def test_create_new_trade_without_token(app_trade: TestClient):
+def test_create_new_trade_without_token(app_client: TestClient):
     """
     GIVEN a user is posting a new trade
     WHEN the endpoint is called without a bearer token
     THEN it should respond with a 401 status code
     """
-    response = app_trade.post('/trades', json=NEW_TRADE_PAYLOAD)
+    response = app_client.post('/trades', json=NEW_TRADE_PAYLOAD)
 
     assert response.status_code == 401

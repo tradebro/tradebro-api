@@ -19,7 +19,7 @@ UPDATE_PASSWORD_PAYLOAD = {
 }
 
 
-def test_update_display_name(app_account: TestClient):
+def test_update_display_name(app_client: TestClient):
     """
     GIVEN updating a user's display name
     WHEN the endpoint is called
@@ -29,7 +29,7 @@ def test_update_display_name(app_account: TestClient):
     register_payload.update({
         'email': f'{generate_new_token(size_in_bytes=10)}@tradebro.com'
     })
-    response = app_account.post('/me/register', json=register_payload)
+    response = app_client.post('/me/register', json=register_payload)
 
     resp_body = response.json()
     modeled = RegisterLoginResponse(**resp_body)
@@ -40,7 +40,7 @@ def test_update_display_name(app_account: TestClient):
     headers = {
         'authorization': f'Bearer {modeled.access_token}'
     }
-    response = app_account.put('/me', json=UPDATE_DISPLAY_NAME_PAYLOAD, headers=headers)
+    response = app_client.put('/me', json=UPDATE_DISPLAY_NAME_PAYLOAD, headers=headers)
 
     assert response.status_code == 200
 
@@ -51,7 +51,7 @@ def test_update_display_name(app_account: TestClient):
     assert modeled.display_name == UPDATE_DISPLAY_NAME_PAYLOAD.get('display_name')
 
 
-def test_update_picture(app_account: TestClient):
+def test_update_picture(app_client: TestClient):
     """
     GIVEN updating a user's picture
     WHEN the endpoint is called
@@ -61,7 +61,7 @@ def test_update_picture(app_account: TestClient):
     register_payload.update({
         'email': f'{generate_new_token(size_in_bytes=10)}@tradebro.com'
     })
-    response = app_account.post('/me/register', json=register_payload)
+    response = app_client.post('/me/register', json=register_payload)
 
     resp_body = response.json()
     modeled = RegisterLoginResponse(**resp_body)
@@ -72,7 +72,7 @@ def test_update_picture(app_account: TestClient):
     headers = {
         'authorization': f'Bearer {modeled.access_token}'
     }
-    response = app_account.put('/me', json=UPDATE_PICTURE_PAYLOAD, headers=headers)
+    response = app_client.put('/me', json=UPDATE_PICTURE_PAYLOAD, headers=headers)
 
     assert response.status_code == 200
 
@@ -83,7 +83,7 @@ def test_update_picture(app_account: TestClient):
     assert modeled.picture == UPDATE_PICTURE_PAYLOAD.get('picture')
 
 
-def test_update_password(app_account: TestClient):
+def test_update_password(app_client: TestClient):
     """
     GIVEN updating a user's password
     WHEN the endpoint is called
@@ -93,7 +93,7 @@ def test_update_password(app_account: TestClient):
     register_payload.update({
         'email': f'{generate_new_token(size_in_bytes=10)}@tradebro.com'
     })
-    response = app_account.post('/me/register', json=register_payload)
+    response = app_client.post('/me/register', json=register_payload)
 
     existing_password = register_payload.get('password1')
 
@@ -109,7 +109,7 @@ def test_update_password(app_account: TestClient):
     UPDATE_PASSWORD_PAYLOAD.update({
         'password': existing_password
     })
-    response = app_account.put('/me', json=UPDATE_PASSWORD_PAYLOAD, headers=headers)
+    response = app_client.put('/me', json=UPDATE_PASSWORD_PAYLOAD, headers=headers)
 
     assert response.status_code == 200
 
@@ -123,6 +123,6 @@ def test_update_password(app_account: TestClient):
         'email': modeled.email,
         'password': UPDATE_PASSWORD_PAYLOAD.get('password1')
     })
-    response = app_account.post('/me/login', json=login_payload)
+    response = app_client.post('/me/login', json=login_payload)
 
     assert response.status_code == 200

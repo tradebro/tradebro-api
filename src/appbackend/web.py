@@ -6,7 +6,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.requests import Request
 from starlette.responses import JSONResponse
 
-from apptrade.views import router
+from appbackend.views import router
 from libshared.context import context
 from libshared.errors import TradebroGeneralError
 from libshared.fastapi import get_basic_app_params, generate_exception_handler
@@ -15,9 +15,9 @@ from libshared.logging import set_request_id
 logger = logging.getLogger(__name__)
 
 app_params = get_basic_app_params(
-    service_name='apptrade',
+    service_name='appbackend',
     environment=context.env,
-    service_description='Trade service for trades',
+    service_description='Account services to forward headers to other services',
     service_version='0.1.0',
     allow_swagger=True,
 )

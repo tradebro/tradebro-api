@@ -7,7 +7,7 @@ from tests.integration.account.test_register_login import REGISTER_PAYLOAD
 from tests.integration.trade.test_new_trade import NEW_TRADE_PAYLOAD
 
 
-def test_get_my_trades_without_since_id(app_account: TestClient, app_trade: TestClient):
+def test_get_my_trades_without_since_id(app_client: TestClient):
     """
     GIVEN a user wants to get their trades without a since_id
     WHEN the endpoint is called
@@ -17,7 +17,7 @@ def test_get_my_trades_without_since_id(app_account: TestClient, app_trade: Test
     register_payload.update({
         'email': f'{generate_new_token(size_in_bytes=10)}@tradebro.com'
     })
-    response = app_account.post('/me/register', json=register_payload)
+    response = app_client.post('/me/register', json=register_payload)
 
     resp_body = response.json()
     modeled = RegisterLoginResponse(**resp_body)
@@ -28,7 +28,7 @@ def test_get_my_trades_without_since_id(app_account: TestClient, app_trade: Test
     headers = {
         'authorization': f'Bearer {modeled.access_token}'
     }
-    response = app_trade.post('/trades', json=NEW_TRADE_PAYLOAD, headers=headers)
+    response = app_client.post('/trades', json=NEW_TRADE_PAYLOAD, headers=headers)
 
     resp_body = response.json()
     modeled = TradeResponse(**resp_body)
@@ -36,14 +36,14 @@ def test_get_my_trades_without_since_id(app_account: TestClient, app_trade: Test
     assert response.status_code == 200
     assert modeled
 
-    response = app_trade.get('/trades', headers=headers)
+    response = app_client.get('/trades', headers=headers)
     resp_body = response.json()
     trades = [TradeResponse(**x) for x in resp_body]
 
     assert len(trades) == 1
 
 
-def test_get_my_trades_with_since_id(app_account: TestClient, app_trade: TestClient):
+def test_get_my_trades_with_since_id(app_client: TestClient):
     """
     GIVEN a user wants to get their trades with a since_id
     WHEN the endpoint is called
@@ -53,7 +53,7 @@ def test_get_my_trades_with_since_id(app_account: TestClient, app_trade: TestCli
     register_payload.update({
         'email': f'{generate_new_token(size_in_bytes=10)}@tradebro.com'
     })
-    response = app_account.post('/me/register', json=register_payload)
+    response = app_client.post('/me/register', json=register_payload)
 
     resp_body = response.json()
     modeled = RegisterLoginResponse(**resp_body)
@@ -64,7 +64,7 @@ def test_get_my_trades_with_since_id(app_account: TestClient, app_trade: TestCli
     headers = {
         'authorization': f'Bearer {modeled.access_token}'
     }
-    response = app_trade.post('/trades', json=NEW_TRADE_PAYLOAD, headers=headers)
+    response = app_client.post('/trades', json=NEW_TRADE_PAYLOAD, headers=headers)
 
     resp_body = response.json()
     modeled = TradeResponse(**resp_body)
@@ -73,7 +73,7 @@ def test_get_my_trades_with_since_id(app_account: TestClient, app_trade: TestCli
     assert response.status_code == 200
     assert modeled
 
-    response = app_trade.get(f'/trades?since_id={since_id}', headers=headers)
+    response = app_client.get(f'/trades?since_id={since_id}', headers=headers)
     resp_body = response.json()
     trades = [TradeResponse(**x) for x in resp_body]
 

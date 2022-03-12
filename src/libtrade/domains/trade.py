@@ -22,11 +22,17 @@ class Trader:
     async def get_my_trades(
         cls, *, ctx: Context, since_id: str | None = None, size: int | None = 10
     ) -> List[TradeResponse]:
+        return await cls.get_user_trades(user_id=ctx.current_user.id, since_id=since_id, size=size)
+
+    @classmethod
+    async def get_user_trades(
+        cls, user_id: PydanticObjectId, since_id: str | None = None, size: int | None = 10
+    ) -> List[TradeResponse]:
         if not since_id:
-            trades = await Trade.find(Trade.user_id == ctx.current_user.id).sort('-id').limit(size).to_list()
+            trades = await Trade.find(Trade.user_id == user_id).sort('-id').limit(size).to_list()
         else:
             trades = (
-                await Trade.find(Trade.user_id == ctx.current_user.id, Trade.id <= PydanticObjectId(since_id))
+                await Trade.find(Trade.user_id == user_id, Trade.id <= PydanticObjectId(since_id))
                 .sort('-id')
                 .limit(size)
                 .to_list()

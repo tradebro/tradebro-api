@@ -4,7 +4,7 @@ from libshared.utils import generate_new_token
 from tests.integration.account.test_update_profile import UPDATE_PICTURE_PAYLOAD
 
 
-def test_unrecognized_access_token(app_account: TestClient):
+def test_unrecognized_access_token(app_client: TestClient):
     """
     GIVEN requesting with an unrecognized bearer token
     WHEN a protected endpoint is called
@@ -14,12 +14,12 @@ def test_unrecognized_access_token(app_account: TestClient):
     headers = {
         'authorization': f'Bearer {random_token}'
     }
-    response = app_account.put('/me', headers=headers, json=UPDATE_PICTURE_PAYLOAD)
+    response = app_client.put('/me', headers=headers, json=UPDATE_PICTURE_PAYLOAD)
 
     assert response.status_code == 401
 
 
-def test_wrongly_formatted_access_token(app_account: TestClient):
+def test_wrongly_formatted_access_token(app_client: TestClient):
     """
     GIVEN requesting with an wrongly formatted bearer token
     WHEN a protected endpoint is called
@@ -29,6 +29,6 @@ def test_wrongly_formatted_access_token(app_account: TestClient):
     headers = {
         'authorization': f'Bearer {random_token} Bearer {random_token}'
     }
-    response = app_account.put('/me', headers=headers, json=UPDATE_PICTURE_PAYLOAD)
+    response = app_client.put('/me', headers=headers, json=UPDATE_PICTURE_PAYLOAD)
 
     assert response.status_code == 401

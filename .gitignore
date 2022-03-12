@@ -187,4 +187,5 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,macos
 
-run-local.sh
+run-local-backend.sh
+run-local-frontend.sh
