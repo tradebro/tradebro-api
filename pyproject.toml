@@ -22,6 +22,7 @@ pytest-cov = "^3.0.0"
 requests = "^2.27.1"
 pytest-env = "^0.6.2"
 black = "^22.1.0"
+pre-commit = "^2.17.0"
 
 [tool.black]
 line-length = 120
