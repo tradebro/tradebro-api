@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 app_params = get_basic_app_params(
     service_name='appbackend',
     environment=context.env,
-    service_description='Account services to forward headers to other services',
+    service_description='Backend service for Tradebro',
     service_version='0.1.0',
     allow_swagger=True,
 )
