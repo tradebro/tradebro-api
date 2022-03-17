@@ -12,6 +12,7 @@ from libshared.context import context
 from libshared.errors import TradebroGeneralError
 from libshared.fastapi import get_basic_app_params, generate_exception_handler
 from libshared.logging import set_request_id
+from libshared.models.baserequestresponse import ErrorResponse
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ errhandler_500 = generate_exception_handler(500, client_error_message="Sorry, so
 
 def general_exception_handler(request: Request, exc: TradebroGeneralError):
     exc_response = TradebroGeneralError(code=exc.code, message=exc.message)
-    message = jsonable_encoder(exc_response)
+    message = ErrorResponse(detail=exc_response.message)
     logger.exception({'message': message}, exc_info=exc)
     return JSONResponse(status_code=exc.code, content=message)
 
