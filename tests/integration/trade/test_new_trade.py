@@ -30,9 +30,7 @@ def test_create_new_trade_success(app_client: TestClient):
     THEN it should record the trade in the database
     """
     register_payload = REGISTER_PAYLOAD.copy()
-    register_payload.update({
-        'email': f'{generate_new_token(size_in_bytes=10)}@tradebro.com'
-    })
+    register_payload.update({'email': f'{generate_new_token(size_in_bytes=10)}@tradebro.com'})
     response = app_client.post('/me/register', json=register_payload)
 
     resp_body = response.json()
@@ -41,9 +39,7 @@ def test_create_new_trade_success(app_client: TestClient):
     assert response.status_code == 200
     assert modeled
 
-    headers = {
-        'authorization': f'Bearer {modeled.access_token}'
-    }
+    headers = {'authorization': f'Bearer {modeled.access_token}'}
     response = app_client.post('/trades', json=NEW_TRADE_PAYLOAD, headers=headers)
 
     resp_body = response.json()

@@ -11,12 +11,12 @@ def test_unrecognized_access_token(app_client: TestClient):
     THEN it should respond with a 401 status code
     """
     random_token = generate_new_token(size_in_bytes=43)
-    headers = {
-        'authorization': f'Bearer {random_token}'
-    }
+    headers = {'authorization': f'Bearer {random_token}'}
     response = app_client.put('/me', headers=headers, json=UPDATE_PICTURE_PAYLOAD)
 
     assert response.status_code == 401
+    assert response.headers.get('content-type') == 'application/json'
+    assert response.json().get('detail') == 'Unrecognized access token'
 
 
 def test_wrongly_formatted_access_token(app_client: TestClient):
@@ -26,9 +26,9 @@ def test_wrongly_formatted_access_token(app_client: TestClient):
     THEN it should respond with a 401 status code
     """
     random_token = generate_new_token(size_in_bytes=43)
-    headers = {
-        'authorization': f'Bearer {random_token} Bearer {random_token}'
-    }
+    headers = {'authorization': f'Bearer {random_token} Bearer {random_token}'}
     response = app_client.put('/me', headers=headers, json=UPDATE_PICTURE_PAYLOAD)
 
     assert response.status_code == 401
+    assert response.headers.get('content-type') == 'application/json'
+    assert response.json().get('detail') == 'Unrecognized access token'

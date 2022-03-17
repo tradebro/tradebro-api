@@ -19,10 +19,7 @@ REGISTER_EXISTING_EMAIL_PAYLOAD = {
     'display_name': 'tista',
     'picture': 'https://pbs.twimg.com/profile_images/1373650624894537730/zTOfiphF_400x400.jpg',
 }
-LOGIN_PAYLOAD = {
-    'email': register_email,
-    'password': register_password,
-}
+LOGIN_PAYLOAD = {'email': register_email, 'password': register_password}
 
 
 def test_register_success(app_client: TestClient):

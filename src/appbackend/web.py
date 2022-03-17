@@ -30,7 +30,7 @@ errhandler_500 = generate_exception_handler(500, client_error_message="Sorry, so
 
 def general_exception_handler(request: Request, exc: TradebroGeneralError):
     exc_response = TradebroGeneralError(code=exc.code, message=exc.message)
-    message = ErrorResponse(detail=exc_response.message)
+    message = ErrorResponse(detail=exc_response.message).dict()
     logger.exception({'message': message}, exc_info=exc)
     return JSONResponse(status_code=exc.code, content=message)
 
