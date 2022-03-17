@@ -2,7 +2,6 @@ import logging
 from uuid import uuid4
 
 from fastapi import FastAPI
-from fastapi.encoders import jsonable_encoder
 from fastapi.requests import Request
 from fastapi.routing import APIRoute
 from starlette.responses import JSONResponse
