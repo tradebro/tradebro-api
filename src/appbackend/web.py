@@ -4,6 +4,7 @@ from uuid import uuid4
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from fastapi.requests import Request
+from fastapi.routing import APIRoute
 from starlette.responses import JSONResponse
 
 from appbackend.views import router
@@ -54,4 +55,11 @@ def health_check():
     return "OK"
 
 
+def use_route_names_as_operation_ids(app: FastAPI):
+    for route in app.routes:
+        if isinstance(route, APIRoute):
+            route.operation_id = route.name
+
+
 app.include_router(router)
+use_route_names_as_operation_ids(app=app)
