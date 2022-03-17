@@ -7,10 +7,15 @@ class TradebroGeneralError(Exception):
         self.message = message
 
 
-class UserNotFoundError(TradebroGeneralError):
-    def __init__(self, email: str):
+class NotFoundError(TradebroGeneralError):
+    def __init__(self, message: str = 'The resource you requested is not found'):
         self.code = 404
-        self.message = f'The user with the email {email} is not registered'
+        self.message = message
+
+
+class UserNotFoundError(NotFoundError):
+    def __init__(self, email: str):
+        super().__init__(message=f'The email {email} is not found')
 
 
 class ForbiddenError(TradebroGeneralError):
